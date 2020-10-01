@@ -7,8 +7,16 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "build")));
 
+app.get("/", function (req, res) {
+	res.send("This is the API!");
+});
+
+app.get("/api", function (req, res) {
+	res.send("This is the API!");
+});
+
 app.get("/api/home", function (req, res) {
-	res.send("Fetched from the server!");
+	res.send("This is from Express!");
 });
 
 app.get("/api/secret", function (req, res) {

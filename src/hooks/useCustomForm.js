@@ -4,13 +4,15 @@ const useCustomForm = ({ initialValues, onSubmit }) => {
 	const [values, setValues] = useState(initialValues || {});
 	const [errors, setErrors] = useState({});
 	const [touched, setTouched] = useState({});
-	const [onSubmitting, setOnSubmitting] = useState < boolean > false;
-	const [onBlur, setOnBlur] = useState < boolean > false;
+	const [onSubmitting, setOnSubmitting] = useState(false);
+	const [onBlur, setOnBlur] = useState(false);
 
+	// Get a reference to the form in the DOM. Do we need the ref attribute on the form.
 	const formRendered = useRef(true);
 
 	useEffect(() => {
-		if (!formRendered.current) {
+		// If immediately after page render there is a current form component, then reset that form component's values
+		if (formRendered.current) {
 			setValues(initialValues);
 			setErrors({});
 			setTouched({});
