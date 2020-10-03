@@ -1,5 +1,4 @@
 import React, {useState, useEffect} from "react";
-import LogIn from "./LogIn.js"
 export default function Home(){
     const [message, setMessage] = useState("Loading...");
     useEffect(
@@ -13,7 +12,6 @@ export default function Home(){
         <>
         <h1>You're Home</h1>
         <h2>{message}</h2>
-        <LogIn />
         </>
     )
 }
