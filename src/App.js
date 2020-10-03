@@ -7,8 +7,7 @@ import Home from "./components/Home";
 import Secret from "./components/Secret";
 import "bulma/css/bulma.min.css";
 import "./styles/App.css";
-import Form from "./components/form/FormWrapper.js";
-import Input from "./components/form/FormInput.js";
+import LogIn from "./components/LogIn2.js";
 
 function App() {
 	const appStyle = {
@@ -18,21 +17,11 @@ function App() {
 		flexFlow: "column wrap",
 	};
 
-	const initialValues = {
-		fName: "",
-		lName: "",
-		email: "",
-		password: "",
-		confirmPassword: ""
-	};
-
-	const submitHandler = e => console.log("Someone pressed submit");
-
 	return (
 		<Router>
 			<div className="App" style={appStyle}>
 				<Nav />
-				
+				<LogIn />
 				<Switch>
 					<Route path="/" exact component={Home} />
 					<Route path="/secret" component={Secret} />

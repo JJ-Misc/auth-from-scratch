@@ -1,5 +1,7 @@
 import React from "react";
 import useCustomForm from "../hooks/useCustomForm.js";
+import Form from "./form/FormWrapper.js"
+import Input from "./form/Input.js"
 
 const initialValues = {
 	fName: "",
@@ -9,10 +11,30 @@ const initialValues = {
     confirmPassword: ""
 };
 
+function aSubmitFunction(values){
+    console.log(values);
+}
+
 export default function LogIn() {
 
+    const uCF = useCustomForm({ initialValues, aSubmitFunction });
+
+    // uCF contains
+    // {
+	// 	values,
+	// 	errors,
+	// 	touched,
+	// 	handleChange,
+	// 	handleBlur,
+	// 	handleSubmit,
+	// }
+
     return(
-        <Form id="regForm" onSubmit={submitHandler} initialValues={initialValues} >
+        <Form 
+            id="regForm" 
+            onSubmit={uCF.handleSubmit} 
+            bttnText="Log In"
+        >
             <Input 	
                 labelFor="fName"
                 labelText="First Name"
@@ -23,63 +45,9 @@ export default function LogIn() {
                 inputLeftIconClass="envelope"
                 inputRightIconClass="exclamation-triangle"
                 helpMessage="Please enter your first name."
+                inputOnChange={uCF.handleChange}
+                inputValue={uCF.values.fName}
             />
         </Form>
-        <form onSubmit={handleSubmit}  >
-            <label htmlFor="fName">First Name</label>
-            <input
-                type="text"
-                id="fName"
-                name="fName"
-                placeholder="First Name"
-                value={values.fName}
-                onChange={handleChange}
-            />
-            
-            <label htmlFor="lName">Last Name</label>
-            <input
-                type="text"
-                id="lName"
-                name="lName"
-                placeholder="Last Name"
-                value={values.lName}
-                onChange={handleChange}
-            />
-            
-            <label htmlFor="email">Email address</label>
-            <input
-                required
-                type="email"
-                id="email"
-                name="email"
-                placeholder="Enter email"
-                value={values.email}
-                onChange={handleChange}
-            />
-
-            <label htmlFor="password">Password</label>
-            <input
-                required
-                type="password"
-                id="password"
-                name="password"
-                placeholder="Password"
-                value={values.password}
-                onChange={handleChange}
-            />
-            
-            <label htmlFor="password">Confirm Password</label>
-            <input
-                required
-                type="text"
-                id="confirm_password"
-                name="confirm_password"
-                placeholder="Confirm Password"
-                value={values.confirmPassword}
-                onChange={handleChange}
-            />
-
-            <button type="submit" >Log In</button>
-        </form>
     )
 }
